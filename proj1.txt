@@ -1,0 +1,31 @@
+Question 0: Why is this error being thrown? *
+NameError in HomeController#index
+uninitialized constant HomeController::Pokemon
+	trainerless_pokemon = Pokemon.where(trainer:nil)
+
+You get this error because the Pokemon model has not been created yet.
+
+Question 1: How are the random Pokemon appearing? What is the common factor between all the possible Pokemon that appear? *
+They are all in the seeds.rb file. The sample is creating the random Pokemon. The common factor is that they are all in the database.
+
+Question 2a: What does the following line in the help text do? Be specific about what "capture_path(id: @pokemon)" is doing. If you're having trouble, look at the Help section in the README. *
+<%= button_to "Throw a Pokeball!", capture_path(id: @pokemon), :class => "button medium", :method => :patch %>
+-Make a "Throw a Pokeball" button that is medium sized, and when pressed, you capture the pokemon through the patch called 'capture'.
+
+Question 2b: Change the URI pattern of the capture_path from "capture" to "asdf" in your routes.rb. Try capturing another Pokemon. Why does the route still work? *
+Remember, the URI pattern is the string following the request type in the route. For instance for a route "GET 'pokemons'", the URI pattern is 'pokemons'
+-URI pattern of the capture_path from "capture" still works after changing it because 'capture' is just a name for the path, but as long as the path is correct, the path will work.
+
+Question 3: What would you name your own Pokemon? *
+Asherina
+
+Question 4: What did you pass into the redirect_to? If it is a path, what did that path need? If it is not a path, why is it okay not to have a path here? *
+redirect_to trainer_path(current_trainer.id)
+That path needed a the id of the current trainer.
+
+Question 5: Explain how putting this line "flash[:error] = @pokemon.errors.full_messages.to_sentence" shows error messages on your form. *
+Hint: Take a look at views/layouts/application.html.erb. What does this file do, and what is it rendering? If you need to learn more about application.html.erb, Google is your friend!
+The file calls upon "render 'layouts/messages'", so it goes to _messages.html.erb and prints out all the flash messages in full sentences (whether it is an notice message or a success message).
+
+Give us feedback on the project!
+This isn't required however it would really help us for future iterations of the DeCal! Let us know what you liked about the project and what didn't work so well, and maybe ideas for how we could do better :)
